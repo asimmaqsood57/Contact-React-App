@@ -5,6 +5,7 @@ import { uuid } from "uuidv4";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import ContactDetails from "./ContactDetails";
 import "./App.css";
 import Header from "./Header";
 import AddContact from "./AddContact";
@@ -45,24 +46,24 @@ function App() {
         <Switch>
           <Route
             path="/add"
-            component={() => (
-              <AddContact addContactHandler={addContactHandler} />
+            render={(props) => (
+              <AddContact {...props} addContactHandler={addContactHandler} />
             )}
           />
           <Route
             path="/"
             exact
-            component={() => (
+            render={(props) => (
               <ContactList
+                {...props}
                 contacts={contacts}
                 getContactId={removeContactHandler}
               />
             )}
           />
-        </Switch>
 
-        {/* <AddContact addContactHandler={addContactHandler} /> */}
-        {/* <ContactList contacts={contacts} getContactId={removeContactHandler} /> */}
+          <Route path="/contact/:id" component={ContactDetails}></Route>
+        </Switch>
       </Router>
     </div>
   );
