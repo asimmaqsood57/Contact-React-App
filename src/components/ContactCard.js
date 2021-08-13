@@ -12,6 +12,9 @@ export default function ContactCard(prop) {
       </div>
       <i
         className="trash alternate outline icon"
+        onClick={() => {
+          prop.clickHandler(prop.contact.id);
+        }}
         style={{ color: "red", marginTop: "5px", float: "right" }}
       ></i>
     </div>
